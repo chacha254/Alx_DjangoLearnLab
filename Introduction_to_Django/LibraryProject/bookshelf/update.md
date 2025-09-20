@@ -1,5 +1,7 @@
-Book.objects.get(1984)
-Book.title = "Nineteen Eighty-Four"
-Book.save()
+book = Book.objects.get(title="1984")
+book.title = "Nineteen Eighty-Four"
+book.save()
 
-secessfully updated the collumn title for id 1.
+book.refresh_from_db()
+print(book.title)
+# Nineteen Eighty-Four

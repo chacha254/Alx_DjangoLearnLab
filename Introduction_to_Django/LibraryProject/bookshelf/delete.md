@@ -1,4 +1,5 @@
-book = Book.objects.get(id=1)
+book = Book.objects.get(title="Nineteen Eighty-Four")
 book.delete()
 
-deleted the book 
+print(Book.objects.all())
+# <QuerySet []>

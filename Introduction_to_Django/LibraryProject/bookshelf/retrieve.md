@@ -1,3 +1,5 @@
-Book.objects.all()
+from bookshelf.models import Book
 
-retrieved all books and printed them on the screen.
+book = Book.objects.get(title="1984")
+for field in book._meta.fields:
+    print(f"{field.name}: {getattr(book, field.name)}")
