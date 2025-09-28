@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Library{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>📚 My Library</h1>
+        <nav>
+            <a href="{% url 'books:list' %}">Books</a> |
+            <a href="{% url 'admin:index' %}">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ now|date:"Y" }} My Library</p>
+    </footer>
+</body>
+</html>
