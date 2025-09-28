@@ -11,7 +11,8 @@ books.all()
 library = Library.objects.get(name=library_name)
 
 Book.objects.filter(name="Charles")
-
+author = Author.objects.get(name=author_name)
+objects.filter(author=author)
 
 book = Book(title="TheGrind", author="SirCharles")
 book2 = Book(title="Hustle", author="Mie")
