@@ -3,7 +3,8 @@ from django.db import models
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=100)
-    return self.name 
+
+
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -12,7 +13,7 @@ class Book(models.Model):
 
 class Library(models.Model):
     name = models.CharField(max_length=100)
-    books = models.ManyToManyField(Book, related_name='Library')
+    books = models.ManyToManyField(Book, related_name='libraries')
 
 class Librarian(models.Model):
     name = models.CharField(max_length=100)
