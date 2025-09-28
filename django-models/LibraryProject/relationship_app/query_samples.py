@@ -14,6 +14,8 @@ Book.objects.filter(name="Charles")
 author = Author.objects.get(name=author_name)
 objects.filter(author=author)
 
+librarian = Librarian.objects.get(library="Book")
+
 book = Book(title="TheGrind", author="SirCharles")
 book2 = Book(title="Hustle", author="Mie")
 books = Book.objects.filter(attribute="Author")
