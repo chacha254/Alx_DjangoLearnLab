@@ -5,8 +5,11 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "LibraryProject.settings")
 django.setup()
  
-Library.objects.get(name=Library_name)
+
 books.all()
+
+Library.objects.get(name=Library)
+
 
 book = Book(title="TheGrind", author="SirCharles")
 book2 = Book(title="Hustle", author="Mie")
