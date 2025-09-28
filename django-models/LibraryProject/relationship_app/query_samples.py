@@ -8,7 +8,9 @@ django.setup()
 
 books.all()
 
-Library.objects.get(name=Library)
+library = Library.objects.get(name=library_name)
+
+Book.objects.filter(name="Charles")
 
 
 book = Book(title="TheGrind", author="SirCharles")
