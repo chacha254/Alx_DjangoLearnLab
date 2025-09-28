@@ -6,9 +6,46 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 from .models import Library, Author, Book, Librarian
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import permission_required, user_passes_test
+
+
 
 # Create your views here.
+# Add a book
+@permission_required('relationship_app.can_add_book', raise_exception=True)
+def add_book(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        author_id = request.POST.get("author")
+        author = get_object_or_404(Author, id=author_id)
+        Book.objects.create(title=title, author=author)
+        return redirect("book_list")
+    authors = Author.objects.all()
+    return render(request, "relationship_app/add_book.html", {"authors": authors})
+
+# Edit a book
+@permission_required('relationship_app.can_change_book', raise_exception=True)
+def edit_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        book.title = request.POST.get("title")
+        author_id = request.POST.get("author")
+        book.author = get_object_or_404(Author, id=author_id)
+        book.save()
+        return redirect("book_list")
+    authors = Author.objects.all()
+    return render(request, "relationship_app/edit_book.html", {"book": book, "authors": authors})
+
+# Delete a book
+@permission_required('relationship_app.can_delete_book', raise_exception=True)
+def delete_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        book.delete()
+        return redirect("book_list")
+    return render(request, "relationship_app/delete_book.html", {"book": book})
+
+
 def is_admin(user):
     return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
